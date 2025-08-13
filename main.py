@@ -1,4 +1,5 @@
 # Imports
+import os
 import sys
 
 class Project:
@@ -56,8 +57,9 @@ def validate_choice(choice):
 
 
 def add_project_menu():
+    clear_terminal()
     print("Select project type:\n")
-    print("1. Programming project\2. Everyday project\n3. Return to main menu\n4. Exit program")
+    print("1. Programming project\n2. Everyday project\n3. Return to main menu\n4. Exit program\n\n")
     choice = str(input("Enter choice: "))
     if choice == "1":
         add_project_programming()
@@ -71,6 +73,7 @@ def add_project_menu():
 
 
 def add_project_programming():
+    clear_terminal()
     project = ProgrammingProject()
     
 
@@ -80,26 +83,30 @@ def add_project_everyday():
 
 
 def view_archive():
+    clear_terminal()
     print("Select which archive to view:\n")
     print("1. Programming projects\n2. Everyday projects\n")
 
-    
+
 def view_programming():
+    clear_terminal()
     print("View programming projects")
 
 
 def view_everyday():
+    clear_terminal()
     print("View everyday projects")
 
 
 
-    
+def clear_terminal():
+    os.system("cls" if os.name == "nt" else "clear")
 
 
 def exit():
     choice = input("Are you sure you want to quit? Y/N: ").lower()
     if choice == "y":
-        sys.exit("Exiting program")
+        sys.exit("\nExiting program")
     elif choice == "n":
         start_menu()
     else:
