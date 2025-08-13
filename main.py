@@ -2,6 +2,11 @@
 import os
 import sys
 
+
+programming_projects = []
+everyday_projects = []
+programming_archive = []
+everyday_archive = []
 logo = """            ******************************************************************************
             ******************************************************************************
             *********************************             ********************************
@@ -20,6 +25,7 @@ logo = """            **********************************************************
             *********************************             ********************************
             ******************************************************************************
             ******************************************************************************"""
+
 
 class Project:
     def __init__(self, name, start, finish, progress, status, language, link):
@@ -44,11 +50,7 @@ class EverydayProject(Project):
 
 
 # Main function
-def main():
-    programming_projects = []
-    everyday_projects = []
-    programming_archive = []
-    everyday_archive = []
+def main():    
     start_menu()
 
 
@@ -79,49 +81,34 @@ def start_menu():
         start_menu()
 
 
-'''
-def validate_choice(choice):
-    if choice == "1":
-        add_project_menu()
-    elif choice == "2":
-        view_programming()
-    elif choice == "3":
-        view_everyday()
-    elif choice == "4":
-        view_archive()
-    elif choice == "5":
-        exit()
-    else:
-        print("Invalid option, use the number to select what to do")
-        print("Returning to main menu...")
-        start_menu()
-'''
-
 
 def add_project_menu():
-    # clear_terminal()
+    # project = Project()
     print("Select project type:\n")
     print("1. Programming project\n2. Everyday project\n3. Return to main menu\n4. Exit program\n\n")
-    choice = str(input("Enter choice: "))
+    choice = str(input("Enter choice: "))    
     if choice == "1":
-        add_project_programming()
+        clear_terminal()
+        add_project_programming(ProgrammingProject.__init__)
     elif choice == "2":
-        add_project_everyday()
+        clear_terminal()
+        add_project_everyday(EverydayProject.__init__)
     elif choice == "3":
+        clear_terminal()
         start_menu()
     elif choice == "4":
         exit()
 
 
 
-def add_project_programming():
-    clear_terminal()
-    project = ProgrammingProject()
+def add_project_programming(project):    
+    # project = ProgrammingProject()
+    print("Add programming project")
     
 
 
-def add_project_everyday():
-    project = EverydayProject()
+def add_project_everyday(project):
+    print("Add everyday project")
 
 
 def view_archive():
