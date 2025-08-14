@@ -94,16 +94,17 @@ class EverydayProject(Project):
         progress = input("Project progress: ")
         status = input("Project status: ")
         project = {
-            "name" : name,
-            "start" : start,
-            "finish" : finish,
-            "progress" : progress,
-            "status" : status
+            "Name" : name,
+            "Start" : start,
+            "Finish" : finish,
+            "Progress" : progress,
+            "Status" : status
             }
         print(project)
         ep.append(project)
-        with open("programming_projects.csv", "a") as csvfile:
-            writer = csv.writer
+        with open("everyday_projects.csv", "a") as csvfile:
+            writer = csv.DictWriter(csvfile, fieldnames=["Name", "Start", "Finish", "Progress", "Status"])
+            writer.writerow(project)
         print("Project added, returning to main menu...")
         start_menu()
 
@@ -168,6 +169,10 @@ def view_programming():
 def view_everyday():
     print("View everyday projects")
     print(everyday_projects)
+    with open("everyday_projects.csv", "r") as csvfile:
+        reader = csv.reader(csvfile)
+        for row in reader:
+            print(row)
     input("Press enter to return to main menu")
     start_menu()
 
