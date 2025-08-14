@@ -1,6 +1,9 @@
 # Imports
+import datetime
 import os
 import sys
+
+from datetime import datetime
 
 
 programming_projects = []
@@ -29,23 +32,48 @@ logo = """            **********************************************************
 
 # Project class, initializing project parameters 
 class Project:
-    def __init__(self, name, start, finish, progress, status, language, link):
+    def __init__(self, name, start, finish, progress, status):
         self.name = name
         self.start = start
         self.finish = finish
         self.progress = progress
         self.status = status
-        self.language = language
-        self.link = link
+        
 
 
 # Programming class, utilizing all project parameters from parent class
 class ProgrammingProject(Project):
     def __init__(self, name, start, finish, progress, status, language, link):
         super().__init__(name, start, finish, progress, status, language, link)
+        self.language = language
+        self.link = link
         
-    def add_project_programming():
-        print("Add programming project from ProgrammingProject class")
+    def add_project_programming(pp):
+        print("Add programming project from ProgrammingProject class...")
+        name = input("Project name: ")
+        start = input("Project start date (if today, leave empty and press enter): ")
+        if start == "":
+            start = datetime.today().strftime("%Y-%m-%d")
+        finish = input("Projected finish date (if today, leave empty and press enter): ")
+        if finish == "":
+            finish == datetime.today().strftime("%Y-%m-%d")
+        language = input("Project language(s): ")
+        link = input("Project link: ")
+        progress = input("Project progress: ")
+        status = input("Project status: ")
+        project = {
+            "name" : name,
+            "start" : start,
+            "finish" : finish,
+            "language" : language,
+            "link" : link,
+            "progress" : progress,
+            "status" : status
+            }
+        print(project)
+        pp.append(project)
+        print("Project added, returning to main menu...")
+        start_menu()
         
 
 
@@ -54,19 +82,40 @@ class EverydayProject(Project):
     def __init__(self, name, start, finish, progress, status):
         super().__init__(name, start, finish, progress, status)
 
-    def add_project_everyday():
-        print("Adding everyday projecty from EverydayProject class")
-
+    def add_project_everyday(ep): 
+        # print(ep) 
+        # print(type(ep))      
+        print("Adding everyday projecty from EverydayProject class...")
+        name = input("Project name: ")
+        start = input("Project start date (if today, leave empty and press enter): ")
+        if start == "":
+            start = datetime.today().strftime("%Y-%m-%d")
+        finish = input("Projected finish date (if today, leave empty and press enter): ")
+        if finish == "":
+            finish == datetime.today().strftime("%Y-%m-%d")
+        progress = input("Project progress: ")
+        status = input("Project status: ")
+        project = {
+            "name" : name,
+            "start" : start,
+            "finish" : finish,
+            "progress" : progress,
+            "status" : status
+            }
+        print(project)
+        ep.append(project)
+        print("Project added, returning to main menu...")
+        start_menu()
 
 
 # Main function
 def main():    
+    print(f"{logo}\n\n\n")
     start_menu()
 
 
-def start_menu():    
-    print(logo)
-    print("\n\n\nWhat would you like to do?\n")
+def start_menu():
+    print("What would you like to do?\n")
     print("1. Add new project\n2. View programming projects\n3. View everyday projects\n4. View archived projects\n5. Exit program\n\n")
     # validate_choice(str(input("Enter choice: ")))
     choice = str(input("Enter choice: "))
@@ -102,10 +151,10 @@ def add_project_menu():
         # add_project_programming(ProgrammingProject.__init__)
         # project = ProgrammingProject()
         # project.add_project_programming(project.__init__)
-        ProgrammingProject.add_project_programming()
+        ProgrammingProject.add_project_programming(programming_projects)
     elif choice == "2":
         clear_terminal()
-        EverydayProject.add_project_everyday()
+        EverydayProject.add_project_everyday(everyday_projects)        
     elif choice == "3":
         clear_terminal()
         start_menu()
@@ -125,6 +174,21 @@ def add_project_menu():
 
 # def add_project_everyday():
 #     print("Add everyday project from regular function")
+
+
+
+def view_programming():
+    print("View programming projects")
+    print(programming_projects)
+    input("Press enter to return to main menu")
+    start_menu()
+
+
+def view_everyday():
+    print("View everyday projects")
+    print(everyday_projects)
+    input("Press enter to return to main menu")
+    start_menu()
 
 
 def view_archive():
@@ -150,30 +214,25 @@ def view_archive():
         view_archive()
 
 
-
-def view_programming():
-    print("View programming projects")
-    print(programming_projects)
-
-
-def view_everyday():
-    print("View everyday projects")
-    print(everyday_projects)
-
-
 def view_archive_programming():
     print("View programming archive")
     print(programming_archive)
+    input("Press enter to return to main menu")
+    start_menu()
 
 
 def view_archive_everyday():
     print("View everyday project archive")
     print(everyday_archive)
+    input("Press enter to return to main menu")
+    start_menu()
 
 
 def view_full_archive():
     print("Viewing full archive")
     print(full_archive)
+    input("Press enter to return to main menu")
+    start_menu()
 
 
 def clear_terminal():
