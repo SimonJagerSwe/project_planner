@@ -1,4 +1,5 @@
 # Imports
+import csv
 import datetime
 import os
 import sys
@@ -101,6 +102,8 @@ class EverydayProject(Project):
             }
         print(project)
         ep.append(project)
+        with open("programming_projects.csv", "a") as csvfile:
+            writer = csv.writer
         print("Project added, returning to main menu...")
         start_menu()
 
