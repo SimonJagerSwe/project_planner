@@ -40,8 +40,7 @@ class Project:
         self.status = status
         
 
-
-# Programming class, utilizing all project parameters from parent class
+# Programming class, project parameters from parent class, and additional
 class ProgrammingProject(Project):
     def __init__(self, name, start, finish, progress, status, language, link):
         super().__init__(name, start, finish, progress, status, language, link)
@@ -77,14 +76,12 @@ class ProgrammingProject(Project):
         
 
 
-# Everyday class, utilizing select parameters from parent class
+# Everyday class, utilizing parameters from parent class
 class EverydayProject(Project):
     def __init__(self, name, start, finish, progress, status):
         super().__init__(name, start, finish, progress, status)
 
-    def add_project_everyday(ep): 
-        # print(ep) 
-        # print(type(ep))      
+    def add_project_everyday(ep):
         print("Adding everyday projecty from EverydayProject class...")
         name = input("Project name: ")
         start = input("Project start date (if today, leave empty and press enter): ")
@@ -117,7 +114,6 @@ def main():
 def start_menu():
     print("What would you like to do?\n")
     print("1. Add new project\n2. View programming projects\n3. View everyday projects\n4. View archived projects\n5. Exit program\n\n")
-    # validate_choice(str(input("Enter choice: ")))
     choice = str(input("Enter choice: "))
     if choice == "1":
         clear_terminal()
@@ -135,22 +131,16 @@ def start_menu():
         exit()
     else:
         print("Invalid choice, pick a number above")
-        # print("Returning to main menu...")
         clear_terminal()
         start_menu()
 
 
-
 def add_project_menu():
-    # project = Project()
     print("Select project type:\n")
     print("1. Programming project\n2. Everyday project\n3. Return to main menu\n4. Exit program\n\n")
     choice = str(input("Enter choice: "))    
     if choice == "1":
         clear_terminal()
-        # add_project_programming(ProgrammingProject.__init__)
-        # project = ProgrammingProject()
-        # project.add_project_programming(project.__init__)
         ProgrammingProject.add_project_programming(programming_projects)
     elif choice == "2":
         clear_terminal()
@@ -163,18 +153,6 @@ def add_project_menu():
     else:
         print("Invalid choice, pick a number above")
         add_project_menu()
-
-
-
-# def add_project_programming():    
-#     # project = ProgrammingProject()
-#     print("Add programming project from regular function")
-    
-
-
-# def add_project_everyday():
-#     print("Add everyday project from regular function")
-
 
 
 def view_programming():
