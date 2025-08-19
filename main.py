@@ -51,6 +51,7 @@ class ProgrammingProject(Project):
         
     def add_project_programming(pp):
         print("Add programming project from ProgrammingProject class...")
+        print(pp)
         name = input("Project name: ")
         start = input("Project start date (if today, leave empty and press enter): ")
         if start == "":
@@ -71,19 +72,43 @@ class ProgrammingProject(Project):
             "progress" : progress,
             "status" : status
             }
-        
-        with open("programming_projects.json", "r") as file:
-            data = json.load(file)
-
         print(project)
-        pp.append(data)
+    
+        try:
+            with open("programming_projects.json", "r") as file:
+                data = json.load(file)
+                print(f"Opening data from progamming_projects.json from ProgrammingProject function, result:\n{data}")
+                # data.clear()
+                # print(data)
+        except:
+            with open("programming_projects.json", "w") as file:
+                data = json.dump({"name": "N/A"}, file)
+                print(f"Initializing programming_projects.json from exception:\n{data}")
+                # print(data)
+                # data.clear()
+                # print(data)
+
+        # print(data)
+        print(pp)
+        pp.clear()
+        # print(pp)
+        # for p in data:
+        #     print(p)
+        #     pp.append(p)
+        #    print(pp)
+        if data:
+            for _ in data:
+                print(f"This is data:\n{_}")
+            pp.append(data)
         pp.append(project)
+        print(f"This is the full programming project list:\n{pp}")
 
         with open("programming_projects.json", "w") as file:
             json.dump(pp, file)
 
         print("Project added, returning to main menu...")
-        start_menu()
+        return pp
+        # start_menu()
         
 
 
@@ -104,11 +129,11 @@ class EverydayProject(Project):
         progress = input("Project progress: ")
         status = input("Project status: ")
         project = {
-            "Name" : name,
-            "Start" : start,
-            "Finish" : finish,
-            "Progress" : progress,
-            "Status" : status
+            "name" : name,
+            "start" : start,
+            "finish" : finish,
+            "progress" : progress,
+            "status" : status
             }
         
         with open("everyday_projects.json", "r") as file:
@@ -120,153 +145,157 @@ class EverydayProject(Project):
 
         with open("everyday_projects.json", "w") as file:
             json.dump(ep, file)
-            
+
         print("Project added, returning to main menu...")
         start_menu()
 
 
 # Main function
-def main():    
-    print(f"{logo}\n\n\n")
-    start_menu()
-
-
-def start_menu():
-    print("What would you like to do?\n")
-    print("1. Add new project\n2. View programming projects\n3. View everyday projects\n4. View archived projects\n5. Exit program\n\n")
-    choice = str(input("Enter choice: "))
-    if choice == "1":
-        clear_terminal()
-        add_project_menu()
-    elif choice == "2":
-        clear_terminal()
-        view_programming()
-    elif choice == "3":
-        clear_terminal()
-        view_everyday()
-    elif choice == "4":
-        clear_terminal()
-        view_archive()
-    elif choice == "5":
-        exit()
-    else:
-        print("Invalid choice, pick a number above")
-        clear_terminal()
+while True:
+    def main():    
+        print(f"{logo}\n\n\n")
         start_menu()
 
 
-def add_project_menu():
-    print("Select project type:\n")
-    print("1. Programming project\n2. Everyday project\n3. Return to main menu\n4. Exit program\n\n")
-    choice = str(input("Enter choice: "))    
-    if choice == "1":
-        clear_terminal()
-        ProgrammingProject.add_project_programming(programming_projects)
-    elif choice == "2":
-        clear_terminal()
-        EverydayProject.add_project_everyday(everyday_projects)        
-    elif choice == "3":
-        clear_terminal()
+    def start_menu():
+        print("What would you like to do?\n")
+        print("1. Add new project\n2. View programming projects\n3. View everyday projects\n4. View archived projects\n5. Exit program\n\n")
+        choice = str(input("Enter choice: "))
+        if choice == "1":
+            clear_terminal()
+            add_project_menu()
+        elif choice == "2":
+            clear_terminal()
+            view_programming()
+        elif choice == "3":
+            clear_terminal()
+            view_everyday()
+        elif choice == "4":
+            clear_terminal()
+            view_archive()
+        elif choice == "5":
+            exit()
+        else:
+            print("Invalid choice, pick a number above")
+            clear_terminal()
+            start_menu()
+
+
+    def add_project_menu():
+        print("Select project type:\n")
+        print("1. Programming project\n2. Everyday project\n3. Return to main menu\n4. Exit program\n\n")
+        choice = str(input("Enter choice: "))    
+        if choice == "1":
+            clear_terminal()
+            ProgrammingProject.add_project_programming(programming_projects)
+            print(f"This is the returned list of programming projects:\n{programming_projects}")
+        elif choice == "2":
+            clear_terminal()
+            EverydayProject.add_project_everyday(everyday_projects)
+            print(everyday_projects)
+        elif choice == "3":
+            clear_terminal()
+            start_menu()
+        elif choice == "4":
+            exit()
+        else:
+            print("Invalid choice, pick a number above")
+            add_project_menu()
+
+
+    def view_programming():
+        print("View programming projects")
+        try:
+            with open("programming_projects.json", "r") as file:
+                projects = json.load(file)
+                for i, project in enumerate(projects):
+                    print(f"{i + 1}.", project)
+
+        except:
+            print("No programming projects available, returning to main menu...")
+            start_menu()
+            
+        input("Press enter to return to main menu")
         start_menu()
-    elif choice == "4":
-        exit()
-    else:
-        print("Invalid choice, pick a number above")
-        add_project_menu()
 
 
-def view_programming():
-    print("View programming projects")
-    try:
-        with open("programming_projects.json", "r") as file:
-            projects = json.load(file)
-            for i, project in enumerate(projects):
-                print(f"{i + 1}.", project)
+    def view_everyday():
+        print("Viewing everyday projects")
+        try:
+            with open("everyday_projects.json", "r") as file:
+                projects = json.load(file)
+                # print(projects)
+                for i, project in enumerate(projects):
+                    print(f"{i + 1}.", project)
+                
+        except:
+            print("No everyday projects available, returning to main menu...")
+            start_menu()
 
-    except:
-        print("No programming projects available, returning to main menu...")
-        start_menu()
-        
-    input("Press enter to return to main menu")
-    start_menu()
-
-
-def view_everyday():
-    print("Viewing everyday projects")
-    try:
-        with open("everyday_projects.json", "r") as file:
-            projects = json.load(file)
-            # print(projects)
-            for i, project in enumerate(projects):
-                print(f"{i + 1}.", project)
-    except:
-        print("No everyday projects available, returning to main menu...")
+        input("Press enter to return to main menu")
         start_menu()
 
-    input("Press enter to return to main menu")
-    start_menu()
+
+    def view_archive():
+        print("Select which archive to view:\n")
+        print("1. Programming projects archive\n2. Everyday projects archive\n3. Full achive\n4. Return to main menu\n5. Exit program\n\n")
+        choice = str(input("Enter choice: "))
+        if choice == "1":
+            clear_terminal()
+            view_archive_programming()
+        elif choice == "2":
+            clear_terminal()
+            view_archive_everyday()
+        elif choice == "3":
+            clear_terminal()
+            view_full_archive()
+        elif choice == "4":
+            clear_terminal()
+            start_menu()
+        elif choice == "5":
+            exit()
+        else:
+            print("Invalid choice, pick a number above")
+            view_archive()
 
 
-def view_archive():
-    print("Select which archive to view:\n")
-    print("1. Programming projects archive\n2. Everyday projects archive\n3. Full achive\n4. Return to main menu\n5. Exit program\n\n")
-    choice = str(input("Enter choice: "))
-    if choice == "1":
-        clear_terminal()
-        view_archive_programming()
-    elif choice == "2":
-        clear_terminal()
-        view_archive_everyday()
-    elif choice == "3":
-        clear_terminal()
-        view_full_archive()
-    elif choice == "4":
-        clear_terminal()
+    def view_archive_programming():
+        print("View programming archive")
+        print(programming_archive)
+        input("Press enter to return to main menu")
         start_menu()
-    elif choice == "5":
-        exit()
-    else:
-        print("Invalid choice, pick a number above")
-        view_archive()
 
 
-def view_archive_programming():
-    print("View programming archive")
-    print(programming_archive)
-    input("Press enter to return to main menu")
-    start_menu()
-
-
-def view_archive_everyday():
-    print("View everyday project archive")
-    print(everyday_archive)
-    input("Press enter to return to main menu")
-    start_menu()
-
-
-def view_full_archive():
-    print("Viewing full archive")
-    print(full_archive)
-    input("Press enter to return to main menu")
-    start_menu()
-
-def modify_project(p):
-    pass
-
-
-def clear_terminal():
-    os.system("cls" if os.name == "nt" else "clear")
-
-
-def exit():
-    choice = input("Are you sure you want to quit? Y/N: ").lower()
-    if choice == "y":
-        sys.exit("\nExiting program")
-    elif choice == "n":
+    def view_archive_everyday():
+        print("View everyday project archive")
+        print(everyday_archive)
+        input("Press enter to return to main menu")
         start_menu()
-    else:
-        print("Invalid option, type 'Y' for yes or 'N for no")
-        exit()
+
+
+    def view_full_archive():
+        print("Viewing full archive")
+        print(full_archive)
+        input("Press enter to return to main menu")
+        start_menu()
+
+    def modify_project(p):
+        pass
+
+
+    def clear_terminal():
+        os.system("cls" if os.name == "nt" else "clear")
+
+
+    def exit():
+        choice = input("Are you sure you want to quit? Y/N: ").lower()
+        if choice == "y":
+            sys.exit("\nExiting program")
+        elif choice == "n":
+            start_menu()
+        else:
+            print("Invalid option, type 'Y' for yes or 'N' for no")
+            exit()
 
 
 
@@ -275,5 +304,5 @@ def exit():
 
 
 # Execute main
-if __name__ == "__main__":
-    main()
+    if __name__ == "__main__":
+        main()
