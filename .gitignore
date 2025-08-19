@@ -3,3 +3,6 @@ Include
 Lib
 pyvenv.cfg
 csv_test.py
+example.csv
+json_test.py
+example.json
