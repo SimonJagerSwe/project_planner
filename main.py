@@ -71,8 +71,17 @@ class ProgrammingProject(Project):
             "progress" : progress,
             "status" : status
             }
+        
+        with open("programming_projects.json", "r") as file:
+            data = json.load(file)
+
         print(project)
+        pp.append(data)
         pp.append(project)
+
+        with open("programming_projects.json", "w") as file:
+            json.dump(pp, file)
+
         print("Project added, returning to main menu...")
         start_menu()
         
@@ -89,7 +98,7 @@ class EverydayProject(Project):
         start = input("Project start date (if today, leave empty and press enter): ")
         if start == "":
             start = datetime.today().strftime("%Y-%m-%d")
-        finish = input("Projected finish date (if today, leave empty and press enter): ")
+        finish = input("Project finish date (if today, leave empty and press enter): ")
         if finish == "":
             finish == datetime.today().strftime("%Y-%m-%d")
         progress = input("Project progress: ")
@@ -101,13 +110,17 @@ class EverydayProject(Project):
             "Progress" : progress,
             "Status" : status
             }
+        
+        with open("everyday_projects.json", "r") as file:
+            data = json.load(file)
+        
         print(project)
+        ep.append(data)
         ep.append(project)
-        # with open("everyday_projects.csv", "a") as csvfile:
-        #     writer = csv.DictWriter(csvfile, fieldnames=["Name", "Start", "Finish", "Progress", "Status"])
-        #     writer.writerow(project)
-        with open("everyday_projects.json", "a") as file:
-            json.dump(project, file)
+
+        with open("everyday_projects.json", "w") as file:
+            json.dump(ep, file)
+            
         print("Project added, returning to main menu...")
         start_menu()
 
@@ -164,21 +177,32 @@ def add_project_menu():
 
 def view_programming():
     print("View programming projects")
-    print(programming_projects)
+    try:
+        with open("programming_projects.json", "r") as file:
+            projects = json.load(file)
+            for i, project in enumerate(projects):
+                print(f"{i + 1}.", project)
+
+    except:
+        print("No programming projects available, returning to main menu...")
+        start_menu()
+        
     input("Press enter to return to main menu")
     start_menu()
 
 
 def view_everyday():
-    print("View everyday projects")
-    print(everyday_projects)
-    # with open("everyday_projects.csv", "r") as csvfile:
-    #     reader = csv.reader(csvfile)
-    #     for row in reader:
-    #        print(row)
-    with open("everyday_projects.json", "r") as file:
-        projects = json.load(file)
-        print(projects)
+    print("Viewing everyday projects")
+    try:
+        with open("everyday_projects.json", "r") as file:
+            projects = json.load(file)
+            # print(projects)
+            for i, project in enumerate(projects):
+                print(f"{i + 1}.", project)
+    except:
+        print("No everyday projects available, returning to main menu...")
+        start_menu()
+
     input("Press enter to return to main menu")
     start_menu()
 
@@ -225,6 +249,9 @@ def view_full_archive():
     print(full_archive)
     input("Press enter to return to main menu")
     start_menu()
+
+def modify_project(p):
+    pass
 
 
 def clear_terminal():
