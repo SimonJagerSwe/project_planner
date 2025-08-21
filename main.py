@@ -90,7 +90,6 @@ class EverydayProject(Project):
         super().__init__(name, start, finish, progress, status)
 
     def add_project_everyday(ep):
-        # print("Adding everyday projecty from EverydayProject class...")
         name = input("Project name: ")
         start = input("Project start date (if today, leave empty and press enter): ")
         if start == "":
