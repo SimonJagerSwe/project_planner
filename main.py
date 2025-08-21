@@ -11,6 +11,7 @@ from datetime import datetime
 programming_projects = []
 pp_file = "programming_projects.json"
 everyday_projects = []
+ep_file = "everyday_projects.json"
 programming_archive = []
 everyday_archive = []
 full_archive = []
@@ -71,16 +72,15 @@ class ProgrammingProject(Project):
             "progress" : progress,
             "status" : status
             }
-
         pp.append(project)
 
         with open(pp_file, "w") as file:
             json.dump(pp, file)
 
-        with open(pp_file, "r") as file:
-            data = json.load(file)
-            print(data)
-            print(type(data))
+        # with open(pp_file, "r") as file:
+        #     data = json.load(file)
+        #     print(data)
+        #     print(type(data))
 
 
 
@@ -90,14 +90,14 @@ class EverydayProject(Project):
         super().__init__(name, start, finish, progress, status)
 
     def add_project_everyday(ep):
-        print("Adding everyday projecty from EverydayProject class...")
+        # print("Adding everyday projecty from EverydayProject class...")
         name = input("Project name: ")
         start = input("Project start date (if today, leave empty and press enter): ")
         if start == "":
             start = datetime.today().strftime("%Y-%m-%d")
         finish = input("Project finish date (if today, leave empty and press enter): ")
         if finish == "":
-            finish == datetime.today().strftime("%Y-%m-%d")
+            finish = datetime.today().strftime("%Y-%m-%d")
         progress = input("Project progress: ")
         status = input("Project status: ")
         project = {
@@ -106,20 +106,15 @@ class EverydayProject(Project):
             "finish" : finish,
             "progress" : progress,
             "status" : status
-            }
-        
-        with open("everyday_projects.json", "r") as file:
-            data = json.load(file)
-        
-        print(project)
-        ep.append(data)
+            }        
         ep.append(project)
 
-        with open("everyday_projects.json", "w") as file:
+        with open(ep_file, "w") as file:
             json.dump(ep, file)
 
-        print("Project added, returning to main menu...")
-        start_menu()
+        '''with open(ep_file, "r") as file:
+            data = json.load(file)
+            print(data)'''
 
 
 # Main function
@@ -164,7 +159,7 @@ while True:
         elif choice == "2":
             clear_terminal()
             EverydayProject.add_project_everyday(everyday_projects)
-            print(everyday_projects)
+            print(f"This is the returned list of everyday projects:\n{everyday_projects}")
         elif choice == "3":
             clear_terminal()
             start_menu()
@@ -180,7 +175,9 @@ while True:
         try:
             with open("programming_projects.json", "r") as file:
                 projects = json.load(file)
-                print(projects)
+                # print(projects)
+                for i, project in enumerate(projects):
+                    print(f"{i + 1}.", project)
 
         except:
             print("No programming projects available, returning to main menu...")
@@ -195,7 +192,6 @@ while True:
         try:
             with open("everyday_projects.json", "r") as file:
                 projects = json.load(file)
-                # print(projects)
                 for i, project in enumerate(projects):
                     print(f"{i + 1}.", project)
                 
