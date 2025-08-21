@@ -9,6 +9,7 @@ from datetime import datetime
 
 
 programming_projects = []
+pp_file = "programming_projects.json"
 everyday_projects = []
 programming_archive = []
 everyday_archive = []
@@ -50,15 +51,13 @@ class ProgrammingProject(Project):
         self.link = link
         
     def add_project_programming(pp):
-        print("Add programming project from ProgrammingProject class...")
-        print(pp)
         name = input("Project name: ")
         start = input("Project start date (if today, leave empty and press enter): ")
         if start == "":
             start = datetime.today().strftime("%Y-%m-%d")
         finish = input("Projected finish date (if today, leave empty and press enter): ")
         if finish == "":
-            finish == datetime.today().strftime("%Y-%m-%d")
+            finish = datetime.today().strftime("%Y-%m-%d")
         language = input("Project language(s): ")
         link = input("Project link: ")
         progress = input("Project progress: ")
@@ -72,44 +71,17 @@ class ProgrammingProject(Project):
             "progress" : progress,
             "status" : status
             }
-        print(project)
-    
-        try:
-            with open("programming_projects.json", "r") as file:
-                data = json.load(file)
-                print(f"Opening data from progamming_projects.json from ProgrammingProject function, result:\n{data}")
-                # data.clear()
-                # print(data)
-        except:
-            with open("programming_projects.json", "w") as file:
-                data = json.dump({"name": "N/A"}, file)
-                print(f"Initializing programming_projects.json from exception:\n{data}")
-                # print(data)
-                # data.clear()
-                # print(data)
 
-        # print(data)
-        print(pp)
-        pp.clear()
-        # print(pp)
-        # for p in data:
-        #     print(p)
-        #     pp.append(p)
-        #    print(pp)
-        if data:
-            for _ in data:
-                print(f"This is data:\n{_}")
-            pp.append(data)
         pp.append(project)
-        print(f"This is the full programming project list:\n{pp}")
 
-        with open("programming_projects.json", "w") as file:
+        with open(pp_file, "w") as file:
             json.dump(pp, file)
 
-        print("Project added, returning to main menu...")
-        return pp
-        # start_menu()
-        
+        with open(pp_file, "r") as file:
+            data = json.load(file)
+            print(data)
+            print(type(data))
+
 
 
 # Everyday class, utilizing parameters from parent class
@@ -208,8 +180,7 @@ while True:
         try:
             with open("programming_projects.json", "r") as file:
                 projects = json.load(file)
-                for i, project in enumerate(projects):
-                    print(f"{i + 1}.", project)
+                print(projects)
 
         except:
             print("No programming projects available, returning to main menu...")
