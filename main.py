@@ -78,7 +78,6 @@ class ProgrammingProject(Project):
             json.dump(pp, file)
 
 
-
 # Everyday class, utilizing parameters from parent class
 class EverydayProject(Project):
     def __init__(self, name, start, finish, progress, status):
@@ -160,8 +159,18 @@ while True:
             add_project_menu()
 
     
-    def modify_project():
-        pass
+    def modify_project(p):
+        with open(p, "r") as file:
+            projects = json.load(file)
+            for i, project in enumerate(projects):
+                print(f"{i + 1}. {project}")
+        
+            choice = int(input("Chose project number to modify: "))
+            # print(f"Project number: {choice}")
+            project_to_change = projects[choice - 1]
+            print(project_to_change)
+            changed_project = {}
+
 
 
     def view_programming():
@@ -170,7 +179,7 @@ while True:
             with open(pp_file, "r") as file:
                 projects = json.load(file)
                 for i, project in enumerate(projects):
-                    print(f"{i + 1}.", project)
+                    print(f"{i + 1}. {project}")
         except:
             print("No programming projects available, returning to main menu...")
             start_menu()
@@ -179,7 +188,7 @@ while True:
         if choice == "1":
             add_project_menu()
         elif choice == "2":
-            modify_project()
+            modify_project(pp_file)
         elif choice == "3":
             start_menu()
         elif choice == "4":
@@ -189,15 +198,13 @@ while True:
             view_programming()
 
         
-
-
     def view_everyday():
         print("Viewing everyday projects")
         try:
             with open(ep_file, "r") as file:
                 projects = json.load(file)
                 for i, project in enumerate(projects):
-                    print(f"{i + 1}.", project)
+                    print(f"{i + 1}. {project}")
                 
         except:
             print("No everyday projects available, returning to main menu...")
@@ -207,7 +214,7 @@ while True:
         if choice == "1":
             add_project_menu()
         elif choice == "2":
-            modify_project()
+            modify_project(ep_file)
         elif choice == "3":
             start_menu()
         elif choice == "4":
@@ -289,9 +296,6 @@ while True:
         else:
             print("Invalid choice")
             view_full_archive()
-
-    def modify_project(p):
-        pass
 
 
     def clear_terminal():
