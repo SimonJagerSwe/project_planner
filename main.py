@@ -77,11 +77,6 @@ class ProgrammingProject(Project):
         with open(pp_file, "w") as file:
             json.dump(pp, file)
 
-        # with open(pp_file, "r") as file:
-        #     data = json.load(file)
-        #     print(data)
-        #     print(type(data))
-
 
 
 # Everyday class, utilizing parameters from parent class
@@ -110,10 +105,6 @@ class EverydayProject(Project):
 
         with open(ep_file, "w") as file:
             json.dump(ep, file)
-
-        '''with open(ep_file, "r") as file:
-            data = json.load(file)
-            print(data)'''
 
 
 # Main function
@@ -262,9 +253,6 @@ while True:
         else:
             print("Invalid option, type 'Y' for yes or 'N' for no")
             exit()
-
-
-
 
 
 
