@@ -254,7 +254,7 @@ while True:
             exit()
         else:
             print("Invalid choice")
-            view_programming()
+            view_archive_programming()
 
 
     def view_archive_everyday():
@@ -271,7 +271,7 @@ while True:
             exit()
         else:
             print("Invalid choice")
-            view_programming()
+            view_archive_everyday()
 
 
     def view_full_archive():
@@ -288,7 +288,7 @@ while True:
             exit()
         else:
             print("Invalid choice")
-            view_programming()
+            view_full_archive()
 
     def modify_project(p):
         pass
