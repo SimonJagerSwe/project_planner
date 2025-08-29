@@ -172,7 +172,7 @@ while True:
     def view_programming():
         print("View programming projects")
         try:
-            with open("programming_projects.json", "r") as file:
+            with open(pp_file, "r") as file:
                 projects = json.load(file)
                 # print(projects)
                 for i, project in enumerate(projects):
@@ -189,7 +189,7 @@ while True:
     def view_everyday():
         print("Viewing everyday projects")
         try:
-            with open("everyday_projects.json", "r") as file:
+            with open(ep_file, "r") as file:
                 projects = json.load(file)
                 for i, project in enumerate(projects):
                     print(f"{i + 1}.", project)
