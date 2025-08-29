@@ -159,22 +159,36 @@ while True:
             print("Invalid choice, pick a number above")
             add_project_menu()
 
+    
+    def modify_project():
+        pass
+
 
     def view_programming():
         print("View programming projects")
         try:
             with open(pp_file, "r") as file:
                 projects = json.load(file)
-                # print(projects)
                 for i, project in enumerate(projects):
                     print(f"{i + 1}.", project)
-
         except:
             print("No programming projects available, returning to main menu...")
             start_menu()
-            
-        input("Press enter to return to main menu")
-        start_menu()
+    
+        choice = str(input("\n\nWhat do you want to do now?\n1. Add new project\n2. Modify or archive project\n3. Return to main menu\n4. Exit program\n\nChoice: "))
+        if choice == "1":
+            add_project_menu()
+        elif choice == "2":
+            modify_project()
+        elif choice == "3":
+            start_menu()
+        elif choice == "4":
+            exit()
+        else:
+            print("Invalid choice")
+            view_programming()
+
+        
 
 
     def view_everyday():
@@ -189,8 +203,18 @@ while True:
             print("No everyday projects available, returning to main menu...")
             start_menu()
 
-        input("Press enter to return to main menu")
-        start_menu()
+        choice = str(input("\n\nWhat do you want to do now?\n1. Add new project\n2. Modify or archive project\n3. Return to main menu\n4. Exit program\n\nChoice: "))
+        if choice == "1":
+            add_project_menu()
+        elif choice == "2":
+            modify_project()
+        elif choice == "3":
+            start_menu()
+        elif choice == "4":
+            exit()
+        else:
+            print("Invalid choice")
+            view_everyday()
 
 
     def view_archive():
@@ -219,22 +243,52 @@ while True:
     def view_archive_programming():
         print("View programming archive")
         print(programming_archive)
-        input("Press enter to return to main menu")
-        start_menu()
+        choice = str(input("\n\nWhat do you want to do now?\n1. Add new project\n2. Modify or archive project\n3. Return to main menu\n4. Exit program\n\nChoice: "))
+        if choice == "1":
+            add_project_menu()
+        elif choice == "2":
+            modify_project()
+        elif choice == "3":
+            start_menu()
+        elif choice == "4":
+            exit()
+        else:
+            print("Invalid choice")
+            view_programming()
 
 
     def view_archive_everyday():
         print("View everyday project archive")
         print(everyday_archive)
-        input("Press enter to return to main menu")
-        start_menu()
+        choice = str(input("\n\nWhat do you want to do now?\n1. Add new project\n2. Modify or archive project\n3. Return to main menu\n4. Exit program\n\nChoice: "))
+        if choice == "1":
+            add_project_menu()
+        elif choice == "2":
+            modify_project()
+        elif choice == "3":
+            start_menu()
+        elif choice == "4":
+            exit()
+        else:
+            print("Invalid choice")
+            view_programming()
 
 
     def view_full_archive():
         print("Viewing full archive")
         print(full_archive)
-        input("Press enter to return to main menu")
-        start_menu()
+        choice = str(input("\n\nWhat do you want to do now?\n1. Add new project\n2. Modify or archive project\n3. Return to main menu\n4. Exit program\n\nChoice: "))
+        if choice == "1":
+            add_project_menu()
+        elif choice == "2":
+            modify_project()
+        elif choice == "3":
+            start_menu()
+        elif choice == "4":
+            exit()
+        else:
+            print("Invalid choice")
+            view_programming()
 
     def modify_project(p):
         pass
