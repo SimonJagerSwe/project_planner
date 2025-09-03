@@ -159,7 +159,7 @@ while True:
             add_project_menu()
 
     
-    def modify_project(pf, pl):
+    def modify_programming_project(pf, pl):
         with open(pf, "r") as file:
             projects = json.load(file)
             for i, project in enumerate(projects):
@@ -170,79 +170,89 @@ while True:
             # print(f"Project number: {choice}")
             project_to_change = projects[choice - 1]
             print(project_to_change)
-            print("If project variable is to be unchanged, just press Enter")
-            if "language" in project_to_change:                
-                name = input("Project name: ")
-                if name == "":
-                    name = project_to_change["name"]
-                start = input("Project start date: ")
-                if start == "":
-                    start = project_to_change["start"]
-                finish = input("Projected finish date: ")
-                if finish == "":
-                    finish = project_to_change["finish"]
-                language = input("Project language(s): ")
-                if language == "":
-                    language = project_to_change["language"]
-                link = input("Project link: ")
-                if link == "":
-                    link = project_to_change["link"]
-                progress = input("Project progress: ")
-                if progress == "":
-                    progress = project_to_change["progress"]
-                status = input("Project status: ")
-                if status == "":
-                    status = project_to_change["status"]
-                changed_project = {
-                    "name" : name,
-                    "start" : start,
-                    "finish" : finish,
-                    "language" : language,
-                    "link" : link,
-                    "progress" : progress,
-                    "status" : status
-                    }
-                print(f"Project to change: {project_to_change}")
-                print(f"Project changed to: {changed_project}")
-                pl.remove(project_to_change)
-                pl.append(changed_project)
-                print(pl)
+            print("If project variable is to be unchanged, just press Enter")           
+            name = input("Project name: ")
+            if name == "":
+                name = project_to_change["name"]
+            start = input("Project start date: ")
+            if start == "":
+                start = project_to_change["start"]
+            finish = input("Projected finish date: ")
+            if finish == "":
+                finish = project_to_change["finish"]
+            language = input("Project language(s): ")
+            if language == "":
+                language = project_to_change["language"]
+            link = input("Project link: ")
+            if link == "":
+                link = project_to_change["link"]
+            progress = input("Project progress: ")
+            if progress == "":
+                progress = project_to_change["progress"]
+            status = input("Project status: ")
+            if status == "":
+                status = project_to_change["status"]
+            changed_project = {
+                "name" : name,
+                "start" : start,
+                "finish" : finish,
+                "language" : language,
+                "link" : link,
+                "progress" : progress,
+                "status" : status
+                }
+            print(f"Project to change: {project_to_change}")
+            print(f"Project changed to: {changed_project}")
+            pl.remove(project_to_change)
+            pl.append(changed_project)
+            print(pl)
 
-                with open(pp_file, "w") as file:
-                    json.dump(pl, file)
+            with open(pp_file, "w") as file:
+                json.dump(pl, file)
 
 
-            else:
-                name = input("Project name: ")
-                if name == "":
-                    name = project_to_change["name"]
-                start = input("Project start date: ")
-                if start == "":
-                    start = project_to_change["start"]
-                finish = input("Project finish date: ")
-                if finish == "":
-                    finish = project_to_change["finish"]
-                progress = input("Project progress: ")
-                if progress == "":
-                    progress = project_to_change["progress"]
-                status = input("Project status: ")
-                if status == "":
-                    status = project_to_change["status"]
-                changed_project = {
-                    "name" : name,
-                    "start" : start,
-                    "finish" : finish,
-                    "progress" : progress,
-                    "status" : status
-                    }
-                print(f"Project to change: {project_to_change}")
-                print(f"Project changed to: {changed_project}")
-                pl.remove(project_to_change)
-                pl.append(changed_project)
-                print(pl)
+    def modify_everyday_project(ef, el):
+            with open(ef, "r") as file:
+                projects = json.load(file)
+                for i, project in enumerate(projects):
+                    print(f"{i + 1}. {project}")
+                    el.append(project)
+        
+            choice = int(input("Chose project number to modify: "))
+            # print(f"Project number: {choice}")
+            project_to_change = projects[choice - 1]
+            print(project_to_change)
+            print("If project variable is to be unchanged, just press Enter") 
+            name = input("Project name: ")
+            if name == "":
+                name = project_to_change["name"]
+            start = input("Project start date: ")
+            if start == "":
+                start = project_to_change["start"]
+            finish = input("Project finish date: ")
+            if finish == "":
+                finish = project_to_change["finish"]
+            progress = input("Project progress: ")
+            if progress == "":
+                progress = project_to_change["progress"]
+            status = input("Project status: ")
+            if status == "":
+                status = project_to_change["status"]
+            changed_project = {
+                "name" : name,
+                "start" : start,
+                "finish" : finish,
+                "progress" : progress,
+                "status" : status
+                }
+            print(f"Project to change: {project_to_change}")
+            print(f"Project changed to: {changed_project}")
+            el.remove(project_to_change)
+            el.append(changed_project)
+            print(el)
 
-                with open(ep_file, "w") as file:
-                    json.dump(pl, file)
+            with open(ep_file, "w") as file:
+                json.dump(el, file)
 
 
     def view_programming():
@@ -260,7 +270,7 @@ while True:
         if choice == "1":
             add_project_menu()
         elif choice == "2":
-            modify_project(pp_file, programming_projects)
+            modify_programming_project(pp_file, programming_projects)
         elif choice == "3":
             start_menu()
         elif choice == "4":
@@ -286,7 +296,7 @@ while True:
         if choice == "1":
             add_project_menu()
         elif choice == "2":
-            modify_project(ep_file, everyday_projects)
+            modify_everyday_project(ep_file, everyday_projects)
         elif choice == "3":
             start_menu()
         elif choice == "4":
@@ -326,7 +336,7 @@ while True:
         if choice == "1":
             add_project_menu()
         elif choice == "2":
-            modify_project()
+            modify_programming_project()
         elif choice == "3":
             start_menu()
         elif choice == "4":
@@ -343,7 +353,7 @@ while True:
         if choice == "1":
             add_project_menu()
         elif choice == "2":
-            modify_project()
+            modify_everyday_project()
         elif choice == "3":
             start_menu()
         elif choice == "4":
@@ -356,14 +366,12 @@ while True:
     def view_full_archive():
         print("Viewing full archive")
         print(full_archive)
-        choice = str(input("\n\nWhat do you want to do now?\n1. Add new project\n2. Modify or archive project\n3. Return to main menu\n4. Exit program\n\nChoice: "))
+        choice = str(input("\n\nWhat do you want to do now?\n1. Add new project\n2. Return to main menu\n3. Exit program\n\nChoice: "))
         if choice == "1":
             add_project_menu()
         elif choice == "2":
-            modify_project()
-        elif choice == "3":
             start_menu()
-        elif choice == "4":
+        elif choice == "3":
             exit()
         else:
             print("Invalid choice")
