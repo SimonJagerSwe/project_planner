@@ -309,17 +309,49 @@ while True:
 
         with open(project_file, "r") as file:
             projects = json.load(file)
-            print(projects)
+            # print(projects)
+            for i, project in enumerate(projects):
+                print(f"{i + 1}. {project}\n")
+                project_list.append(project)
+        # print(f"\nProject list:\n{project_list}\n")
 
         with open(current_file, "r") as file:
             projects = json.load(file)
-            print(projects)
+            # print(projects)
+            for project in projects:
+                current_list.append(project)
+        # print(f"Current project list:\n{current_list}\n")
 
         with open(full_archive_file, "r") as file:
             projects = json.load(file)
-            print(projects)
+            # print(projects)
+            for project in projects:
+                full_archive_list.append(project)
+        # print(f"Full archive:\n{full_archive_list}\n")
+
+        idx = int(input("Chose project number to archive: "))
+        project_to_archive = project_list[idx - 1]
+        print(project_to_archive)
+        print(f"\nCurrent project list:\n{project_list}\n")
+        project_list.remove(project_to_archive)
+        print(f"Modified project list:\n{project_list}\n")
+        print(f"Current archive list:\n{current_list}\n")
+        current_list.append(project_to_archive)
+        print(f"Modified current list:\n{current_list}\n")
+        # print(f"Full archive:\n{full_archive_list}\n")
+        # full_archive_list.append(project_to_archive)
+        # print(f"Modified full archive:\n{full_archive_list}\n")
+
+        # with open(project_file, "w") as file:
+        #     json.dump(project_to_archive, file)
+        # with open(current_file, "w") as file:
+        #     json.dump(current_list, file)
+        # with open(full_archive_file, "w") as file:
+        #     json.dump(full_archive_list, file)
 
         input()
+
+        # return project_file, current_file, full_archive_file
 
 
     # View current programming projects
