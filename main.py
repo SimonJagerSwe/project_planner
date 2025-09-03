@@ -201,7 +201,7 @@ while True:
         
             choice = int(input("Chose project number to modify: "))
             project_to_change = projects[choice - 1]
-            print(project_to_change)
+            # print(project_to_change)
             print("If project variable is to be unchanged, just press Enter")           
             name = input("Project name: ")
             if name == "":
@@ -333,12 +333,16 @@ while True:
     
         choice = str(input("\n\nWhat do you want to do now?\n1. Add new project\n2. Modify project\n3. Archive project\n4. Return to main menu\n5. Exit program\n\nChoice: "))
         if choice == "1":
+            clear_terminal()
             add_project_menu()
         elif choice == "2":
+            clear_terminal()
             modify_programming_project(pp_file, programming_projects)
         elif choice == "3":
+            clear_terminal()
             archive_project(pp_file, programming_projects, programming_archive, full_archive)
         elif choice == "4":
+            clear_terminal()
             start_menu()
         elif choice == "5":
             exit()
@@ -361,12 +365,16 @@ while True:
 
         choice = str(input("\n\nWhat do you want to do now?\n1. Add new project\n2. Modify project\n3. Archive project\n4. Return to main menu\n5. Exit program\n\nChoice: "))
         if choice == "1":
+            clear_terminal()
             add_project_menu()
         elif choice == "2":
+            clear_terminal()
             modify_everyday_project(ep_file, everyday_projects)
         elif choice == "3":
+            clear_terminal()
             archive_project(ep_file, everyday_projects, everyday_archive, full_archive)
         elif choice == "4":
+            clear_terminal()
             start_menu()
         elif choice == "5":
             exit()
@@ -405,8 +413,10 @@ while True:
         print(programming_archive)
         choice = str(input("\n\nWhat do you want to do now?\n1. Add new project\n2. Return to main menu\n3. Exit program\n\nChoice: "))
         if choice == "1":
+            clear_terminal()
             add_project_menu()
         elif choice == "2":
+            clear_terminal()
             start_menu()
         elif choice == "3":
             exit()
@@ -421,8 +431,10 @@ while True:
         print(everyday_archive)
         choice = str(input("\n\nWhat do you want to do now?\n1. Add new project\n2. Return to main menu\n3. Exit program\n\nChoice: "))
         if choice == "1":
+            clear_terminal()
             add_project_menu()
         elif choice == "2":
+            clear_terminal()
             start_menu()
         elif choice == "3":
             exit()
@@ -437,8 +449,10 @@ while True:
         print(full_archive)
         choice = str(input("\n\nWhat do you want to do now?\n1. Add new project\n2. Return to main menu\n3. Exit program\n\nChoice: "))
         if choice == "1":
+            clear_terminal()
             add_project_menu()
         elif choice == "2":
+            clear_terminal()
             start_menu()
         elif choice == "3":
             exit()
