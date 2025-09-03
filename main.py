@@ -196,7 +196,7 @@ while True:
         with open(pf, "r") as file:
             projects = json.load(file)
             for i, project in enumerate(projects):
-                print(f"{i + 1}. {project}")
+                print(f"{i + 1}. {project}\n")
                 pl.append(project)
         
             choice = int(input("Chose project number to modify: "))
@@ -251,12 +251,12 @@ while True:
         with open(ef, "r") as file:
             projects = json.load(file)
             for i, project in enumerate(projects):
-                print(f"{i + 1}. {project}")
+                print(f"{i + 1}. {project}\n")
                 el.append(project)
     
         choice = int(input("Chose project number to modify: "))
         project_to_change = projects[choice - 1]
-        print(project_to_change)
+        # print(project_to_change)
         print("If project variable is to be unchanged, just press Enter") 
         name = input("Project name: ")
         if name == "":
@@ -280,11 +280,11 @@ while True:
             "progress" : progress,
             "status" : status
             }
-        print(f"Project to change: {project_to_change}")
-        print(f"Project changed to: {changed_project}")
+        # print(f"Project to change: {project_to_change}")
+        # print(f"Project changed to: {changed_project}")
         el.remove(project_to_change)
         el.append(changed_project)
-        print(el)
+        # print(el)
 
         with open(ep_file, "w") as file:
             json.dump(el, file)
@@ -294,26 +294,26 @@ while True:
     
     # Project archiving
     def archive_project(pf, pl, pa, fa):
-        print(pf)
-        print(pl)
+        # print(pf)
+        # print(pl)
         pl.clear()
-        print(pl)
+        # print(pl)
         with open(pf, "r") as file:
             projects = json.load(file)
             for project in projects:
                 pl.append(project)
-        print(pl)
+        # print(pl)
         for i, p in enumerate(pl):
-            print(f"{i + 1}. {p}")
+            print(f"{i + 1}. {p}\n")
         choice = int(input("Chose which project number to archive: "))
         project_to_archive = pl[choice - 1]
-        print(f"Project to archive: {project_to_archive}")
+        # print(f"\nProject to archive: {project_to_archive}")
         pl.remove(project_to_archive)
-        print(f"Project list:\n{pl}")
+        # print(f"\nProject list:\n{pl}")
         pa.append(project_to_archive)
-        print(f"Project archive:\n{pa}")
+        # print(f"\nProject archive:\n{pa}")
         fa.append(project_to_archive)
-        print(f"Full archive:\n{fa}")
+        # print(f"\nFull archive:\n{fa}")
 
         return pl, pa, fa
 
@@ -321,12 +321,12 @@ while True:
 
     # View current programming projects
     def view_programming():
-        print("View programming projects")
+        print("Viewing programming projects")
         try:
             with open(pp_file, "r") as file:
                 projects = json.load(file)
                 for i, project in enumerate(projects):
-                    print(f"{i + 1}. {project}")
+                    print(f"{i + 1}. {project}\n")
         except:
             print("No programming projects available, returning to main menu...")
             start_menu()
@@ -354,7 +354,7 @@ while True:
             with open(ep_file, "r") as file:
                 projects = json.load(file)
                 for i, project in enumerate(projects):
-                    print(f"{i + 1}. {project}")                
+                    print(f"{i + 1}. {project}\n")                
         except:
             print("No everyday projects available, returning to main menu...")
             start_menu()        
@@ -401,16 +401,14 @@ while True:
 
     # Programming archive viewer
     def view_archive_programming():
-        print("View programming archive")
+        print("Viewing programming archive")
         print(programming_archive)
-        choice = str(input("\n\nWhat do you want to do now?\n1. Add new project\n2. Modify or archive project\n3. Return to main menu\n4. Exit program\n\nChoice: "))
+        choice = str(input("\n\nWhat do you want to do now?\n1. Add new project\n2. Return to main menu\n3. Exit program\n\nChoice: "))
         if choice == "1":
             add_project_menu()
         elif choice == "2":
-            modify_programming_project()
-        elif choice == "3":
             start_menu()
-        elif choice == "4":
+        elif choice == "3":
             exit()
         else:
             print("Invalid choice")
@@ -419,16 +417,14 @@ while True:
 
     # Everyday archive viewer
     def view_archive_everyday():
-        print("View everyday project archive")
+        print("Viewing everyday project archive")
         print(everyday_archive)
-        choice = str(input("\n\nWhat do you want to do now?\n1. Add new project\n2. Modify or archive project\n3. Return to main menu\n4. Exit program\n\nChoice: "))
+        choice = str(input("\n\nWhat do you want to do now?\n1. Add new project\n2. Return to main menu\n3. Exit program\n\nChoice: "))
         if choice == "1":
             add_project_menu()
         elif choice == "2":
-            modify_everyday_project()
-        elif choice == "3":
             start_menu()
-        elif choice == "4":
+        elif choice == "3":
             exit()
         else:
             print("Invalid choice")
