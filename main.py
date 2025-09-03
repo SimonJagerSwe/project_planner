@@ -275,17 +275,22 @@ while True:
 
 
     def archive_project(pf, pl):
-        print(pf)
-        print(pl)
+        # print(pf)
+        # print(pl)
         pl.clear()
-        print(pl)
+        # print(pl)
         with open(pf, "r") as file:
             projects = json.load(file)
-            for i, project in enumerate(projects):
-                print(f"{i + 1}. {project}")
+            for project in projects:
                 pl.append(project)
+        # print(pl)
+        for i, p in enumerate(pl):
+            print(f"{i + 1}. {p}")
+        choice = int(input("Chose which project number to archive: "))
+        project_to_archive = pl[choice - 1]
+        print(project_to_archive)
 
-        print(pl)
+
 
 
     def view_programming():
