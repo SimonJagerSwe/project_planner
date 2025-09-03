@@ -13,15 +13,36 @@ with open(pp_file, "r") as file:
     p_projects = json.load(file)
     for project in p_projects:
         programming_projects.append(project)
+
 ep_file = "everyday_projects.json"
 everyday_projects = []
 with open(ep_file, "r") as file:
     e_projects = json.load(file)
     for project in e_projects:
         everyday_projects.append(project)
+
+pa_file = "programming_archive.json"
 programming_archive = []
+with open(pa_file, "r") as file:
+    pa = json.load(file)
+    for project in pa:
+        programming_archive.append(project)
+
 everyday_archive = []
+ea_file = "everyday_archive.json"
+with open(ea_file, "r") as file:
+    ea = json.load(file)
+    for project in ea:
+        everyday_archive.append(project)
+
 full_archive = []
+fa_file = "full_archive.json"
+with open(fa_file, "r") as file:
+    fa = json.load(file)
+    for project in fa:
+        full_archive.append(project)
+
+
 logo = """            ******************************************************************************
             ******************************************************************************
             *********************************             ********************************
@@ -273,8 +294,8 @@ while True:
 
         return el
 
-
-    def archive_project(pf, pl):
+    
+    def archive_project(pf, pl, pa, fa):
         # print(pf)
         # print(pl)
         pl.clear()
@@ -289,6 +310,12 @@ while True:
         choice = int(input("Chose which project number to archive: "))
         project_to_archive = pl[choice - 1]
         print(project_to_archive)
+        pl.append(project_to_archive)
+        print(f"Project list:\n{pl}")
+        print(f"Project archive:\n{pa}")
+        print(f"Full archive:\n{fa}")
+
+        # return pl, pa, fa
 
 
 
@@ -310,7 +337,7 @@ while True:
         elif choice == "2":
             modify_programming_project(pp_file, programming_projects)
         elif choice == "3":
-            archive_project(pp_file, programming_projects)
+            archive_project(pp_file, programming_projects, programming_archive, full_archive)
         elif choice == "4":
             start_menu()
         elif choice == "5":
