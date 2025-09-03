@@ -167,10 +167,10 @@ while True:
 
     
     def modify_programming_project(pf, pl):
-        print(pf)
-        print(pl)
+        # print(pf)
+        # print(pl)
         pl.clear()
-        print(pl)
+        # print(pl)
         with open(pf, "r") as file:
             projects = json.load(file)
             for i, project in enumerate(projects):
@@ -225,10 +225,10 @@ while True:
 
 
     def modify_everyday_project(ef, el):
-        print(ef)
-        print(el)
+        # print(ef)
+        # print(el)
         el.clear()
-        print(el)
+        # print(el)
         with open(ef, "r") as file:
             projects = json.load(file)
             for i, project in enumerate(projects):
