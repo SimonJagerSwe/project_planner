@@ -7,42 +7,6 @@ import sys
 
 from datetime import datetime
 
-# Initialising archives from json-files
-pp_file = "programming_projects.json"
-programming_projects = []
-with open(pp_file, "r") as file:
-    p_projects = json.load(file)
-    for project in p_projects:
-        programming_projects.append(project)
-
-ep_file = "everyday_projects.json"
-everyday_projects = []
-with open(ep_file, "r") as file:
-    e_projects = json.load(file)
-    for project in e_projects:
-        everyday_projects.append(project)
-
-pa_file = "programming_archive.json"
-programming_archive = []
-with open(pa_file, "r") as file:
-    pa = json.load(file)
-    for project in pa:
-        programming_archive.append(project)
-
-everyday_archive = []
-ea_file = "everyday_archive.json"
-with open(ea_file, "r") as file:
-    ea = json.load(file)
-    for project in ea:
-        everyday_archive.append(project)
-
-full_archive = []
-fa_file = "full_archive.json"
-with open(fa_file, "r") as file:
-    fa = json.load(file)
-    for project in fa:
-        full_archive.append(project)
-
 
 # Logo
 logo = """            ******************************************************************************
@@ -63,7 +27,46 @@ logo = """            **********************************************************
             *********************************             ********************************
             ******************************************************************************
             ******************************************************************************"""
+pp_file = "programming_projects.json"
+programming_projects = []
+pa_file = "programming_archive.json"
+programming_archive = []
+ep_file = "everyday_projects.json"
+everyday_projects = []
+ea_file = "everyday_archive.json"
+everyday_archive = []
+fa_file = "full_archive.json"
+full_archive = []
 
+
+# Initialising archives from json-files
+def initialize_project_lists():    
+    with open(pp_file, "r") as file:
+        p_projects = json.load(file)
+        for project in p_projects:
+            programming_projects.append(project)
+
+    with open(pa_file, "r") as file:
+        pa = json.load(file)
+        for project in pa:
+            programming_archive.append(project)
+   
+    with open(ep_file, "r") as file:
+        e_projects = json.load(file)
+        for project in e_projects:
+            everyday_projects.append(project)
+    
+    with open(ea_file, "r") as file:
+        ea = json.load(file)
+        for project in ea:
+            everyday_archive.append(project)
+
+    with open(fa_file, "r") as file:
+        fa = json.load(file)
+        for project in fa:
+            full_archive.append(project)
+
+    return programming_projects, programming_archive, everyday_projects, everyday_archive, full_archive
 
 # Project class, initializing project parameters 
 class Project:
@@ -139,7 +142,8 @@ class EverydayProject(Project):
 
 # Main function
 while True:
-    def main():    
+    def main():
+        initialize_project_lists()
         print(f"{logo}\n\n\n")
         start_menu()
 
@@ -256,7 +260,6 @@ while True:
     
         choice = int(input("Chose project number to modify: "))
         project_to_change = projects[choice - 1]
-        # print(project_to_change)
         print("If project variable is to be unchanged, just press Enter") 
         name = input("Project name: ")
         if name == "":
@@ -280,11 +283,8 @@ while True:
             "progress" : progress,
             "status" : status
             }
-        # print(f"Project to change: {project_to_change}")
-        # print(f"Project changed to: {changed_project}")
         el.remove(project_to_change)
         el.append(changed_project)
-        # print(el)
 
         with open(ep_file, "w") as file:
             json.dump(el, file)
@@ -293,30 +293,33 @@ while True:
 
     
     # Project archiving
-    def archive_project(pf, pl, pa, fa):
-        # print(pf)
-        # print(pl)
-        pl.clear()
-        # print(pl)
-        with open(pf, "r") as file:
+    def archive_project(project_file, project_list, current_file, current_list, full_archive_file, full_archive_list):
+        # print(project_file)
+        # print(project_list)
+        project_list.clear()
+        # print(project_list)
+        # print(current_file)
+        # print(current_list)
+        current_list.clear()
+        # print(current_list)
+        # print(full_archive_file)
+        # print(full_archive_list)
+        full_archive_list.clear()
+        # print(full_archive_list)
+
+        with open(project_file, "r") as file:
             projects = json.load(file)
-            for project in projects:
-                pl.append(project)
-        # print(pl)
-        for i, p in enumerate(pl):
-            print(f"{i + 1}. {p}\n")
-        choice = int(input("Chose which project number to archive: "))
-        project_to_archive = pl[choice - 1]
-        # print(f"\nProject to archive: {project_to_archive}")
-        pl.remove(project_to_archive)
-        # print(f"\nProject list:\n{pl}")
-        pa.append(project_to_archive)
-        # print(f"\nProject archive:\n{pa}")
-        fa.append(project_to_archive)
-        # print(f"\nFull archive:\n{fa}")
+            print(projects)
 
-        return pl, pa, fa
+        with open(current_file, "r") as file:
+            projects = json.load(file)
+            print(projects)
 
+        with open(full_archive_file, "r") as file:
+            projects = json.load(file)
+            print(projects)
+
+        input()
 
 
     # View current programming projects
@@ -340,7 +343,7 @@ while True:
             modify_programming_project(pp_file, programming_projects)
         elif choice == "3":
             clear_terminal()
-            archive_project(pp_file, programming_projects, programming_archive, full_archive)
+            archive_project(pp_file, programming_projects, pa_file, programming_archive, fa_file, full_archive)
         elif choice == "4":
             clear_terminal()
             start_menu()
@@ -372,7 +375,7 @@ while True:
             modify_everyday_project(ep_file, everyday_projects)
         elif choice == "3":
             clear_terminal()
-            archive_project(ep_file, everyday_projects, everyday_archive, full_archive)
+            archive_project(ep_file, everyday_projects, ea_file, everyday_archive, fa_file, full_archive)
         elif choice == "4":
             clear_terminal()
             start_menu()
@@ -410,7 +413,9 @@ while True:
     # Programming archive viewer
     def view_archive_programming():
         print("Viewing programming archive")
-        print(programming_archive)
+        for i, project in enumerate(programming_archive):
+            print(f"{i + 1}. {project}")
+        # print(programming_archive)
         choice = str(input("\n\nWhat do you want to do now?\n1. Add new project\n2. Return to main menu\n3. Exit program\n\nChoice: "))
         if choice == "1":
             clear_terminal()
@@ -428,7 +433,9 @@ while True:
     # Everyday archive viewer
     def view_archive_everyday():
         print("Viewing everyday project archive")
-        print(everyday_archive)
+        for i, project in enumerate(everyday_archive):
+            print(f"{i + 1}. {project}")
+        # print(everyday_archive)
         choice = str(input("\n\nWhat do you want to do now?\n1. Add new project\n2. Return to main menu\n3. Exit program\n\nChoice: "))
         if choice == "1":
             clear_terminal()
@@ -446,7 +453,9 @@ while True:
     # Full archive viewer
     def view_full_archive():
         print("Viewing full archive")
-        print(full_archive)
+        for i, project in enumerate(full_archive):
+            print(f"{i + 1}. {project}")
+        # print(full_archive)
         choice = str(input("\n\nWhat do you want to do now?\n1. Add new project\n2. Return to main menu\n3. Exit program\n\nChoice: "))
         if choice == "1":
             clear_terminal()
