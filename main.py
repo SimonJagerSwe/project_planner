@@ -160,6 +160,10 @@ while True:
 
     
     def modify_programming_project(pf, pl):
+        # print(pf)
+        # print(pl)
+        pl.clear()
+        # print(pl)
         with open(pf, "r") as file:
             projects = json.load(file)
             for i, project in enumerate(projects):
@@ -212,47 +216,51 @@ while True:
 
 
     def modify_everyday_project(ef, el):
-            with open(ef, "r") as file:
-                projects = json.load(file)
-                for i, project in enumerate(projects):
-                    print(f"{i + 1}. {project}")
-                    el.append(project)
-        
-            choice = int(input("Chose project number to modify: "))
-            # print(f"Project number: {choice}")
-            project_to_change = projects[choice - 1]
-            print(project_to_change)
-            print("If project variable is to be unchanged, just press Enter") 
-            name = input("Project name: ")
-            if name == "":
-                name = project_to_change["name"]
-            start = input("Project start date: ")
-            if start == "":
-                start = project_to_change["start"]
-            finish = input("Project finish date: ")
-            if finish == "":
-                finish = project_to_change["finish"]
-            progress = input("Project progress: ")
-            if progress == "":
-                progress = project_to_change["progress"]
-            status = input("Project status: ")
-            if status == "":
-                status = project_to_change["status"]
-            changed_project = {
-                "name" : name,
-                "start" : start,
-                "finish" : finish,
-                "progress" : progress,
-                "status" : status
-                }
-            print(f"Project to change: {project_to_change}")
-            print(f"Project changed to: {changed_project}")
-            el.remove(project_to_change)
-            el.append(changed_project)
-            print(el)
+        # print(ef)
+        # print(el)
+        el.clear()
+        # print(el)
+        with open(ef, "r") as file:
+            projects = json.load(file)
+            for i, project in enumerate(projects):
+                print(f"{i + 1}. {project}")
+                el.append(project)
+    
+        choice = int(input("Chose project number to modify: "))
+        # print(f"Project number: {choice}")
+        project_to_change = projects[choice - 1]
+        print(project_to_change)
+        print("If project variable is to be unchanged, just press Enter") 
+        name = input("Project name: ")
+        if name == "":
+            name = project_to_change["name"]
+        start = input("Project start date: ")
+        if start == "":
+            start = project_to_change["start"]
+        finish = input("Project finish date: ")
+        if finish == "":
+            finish = project_to_change["finish"]
+        progress = input("Project progress: ")
+        if progress == "":
+            progress = project_to_change["progress"]
+        status = input("Project status: ")
+        if status == "":
+            status = project_to_change["status"]
+        changed_project = {
+            "name" : name,
+            "start" : start,
+            "finish" : finish,
+            "progress" : progress,
+            "status" : status
+            }
+        print(f"Project to change: {project_to_change}")
+        print(f"Project changed to: {changed_project}")
+        el.remove(project_to_change)
+        el.append(changed_project)
+        print(el)
 
-            with open(ep_file, "w") as file:
-                json.dump(el, file)
+        with open(ep_file, "w") as file:
+            json.dump(el, file)
 
 
     def view_programming():
