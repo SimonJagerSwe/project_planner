@@ -7,11 +7,18 @@ import sys
 
 from datetime import datetime
 
-
-programming_projects = []
 pp_file = "programming_projects.json"
-everyday_projects = []
+programming_projects = []
+with open(pp_file, "r") as file:
+    p_projects = json.load(file)
+    for project in p_projects:
+        programming_projects.append(project)
 ep_file = "everyday_projects.json"
+everyday_projects = []
+with open(ep_file, "r") as file:
+    e_projects = json.load(file)
+    for project in e_projects:
+        everyday_projects.append(project)
 programming_archive = []
 everyday_archive = []
 full_archive = []
@@ -144,11 +151,11 @@ while True:
         if choice == "1":
             clear_terminal()
             ProgrammingProject.add_project_programming(programming_projects)
-            print(f"This is the returned list of programming projects:\n{programming_projects}")
+            # print(f"This is the returned list of programming projects:\n{programming_projects}")
         elif choice == "2":
             clear_terminal()
             EverydayProject.add_project_everyday(everyday_projects)
-            print(f"This is the returned list of everyday projects:\n{everyday_projects}")
+            # print(f"This is the returned list of everyday projects:\n{everyday_projects}")
         elif choice == "3":
             clear_terminal()
             start_menu()
@@ -160,10 +167,10 @@ while True:
 
     
     def modify_programming_project(pf, pl):
-        # print(pf)
-        # print(pl)
+        print(pf)
+        print(pl)
         pl.clear()
-        # print(pl)
+        print(pl)
         with open(pf, "r") as file:
             projects = json.load(file)
             for i, project in enumerate(projects):
@@ -214,12 +221,14 @@ while True:
             with open(pp_file, "w") as file:
                 json.dump(pl, file)
 
+            return pl
+
 
     def modify_everyday_project(ef, el):
-        # print(ef)
-        # print(el)
+        print(ef)
+        print(el)
         el.clear()
-        # print(el)
+        print(el)
         with open(ef, "r") as file:
             projects = json.load(file)
             for i, project in enumerate(projects):
@@ -262,6 +271,22 @@ while True:
         with open(ep_file, "w") as file:
             json.dump(el, file)
 
+        return el
+
+
+    def archive_project(pf, pl):
+        print(pf)
+        print(pl)
+        pl.clear()
+        print(pl)
+        with open(pf, "r") as file:
+            projects = json.load(file)
+            for i, project in enumerate(projects):
+                print(f"{i + 1}. {project}")
+                pl.append(project)
+
+        print(pl)
+
 
     def view_programming():
         print("View programming projects")
@@ -274,14 +299,16 @@ while True:
             print("No programming projects available, returning to main menu...")
             start_menu()
     
-        choice = str(input("\n\nWhat do you want to do now?\n1. Add new project\n2. Modify or archive project\n3. Return to main menu\n4. Exit program\n\nChoice: "))
+        choice = str(input("\n\nWhat do you want to do now?\n1. Add new project\n2. Modify project\n3. Archive project\n4. Return to main menu\n5. Exit program\n\nChoice: "))
         if choice == "1":
             add_project_menu()
         elif choice == "2":
             modify_programming_project(pp_file, programming_projects)
         elif choice == "3":
-            start_menu()
+            archive_project(pp_file, programming_projects)
         elif choice == "4":
+            start_menu()
+        elif choice == "5":
             exit()
         else:
             print("Invalid choice")
@@ -300,14 +327,18 @@ while True:
             print("No everyday projects available, returning to main menu...")
             start_menu()
 
-        choice = str(input("\n\nWhat do you want to do now?\n1. Add new project\n2. Modify or archive project\n3. Return to main menu\n4. Exit program\n\nChoice: "))
+        
+
+        choice = str(input("\n\nWhat do you want to do now?\n1. Add new project\n2. Modify project\n3. Archive project\n4. Return to main menu\n5. Exit program\n\nChoice: "))
         if choice == "1":
             add_project_menu()
         elif choice == "2":
             modify_everyday_project(ep_file, everyday_projects)
         elif choice == "3":
-            start_menu()
+            archive_project(ep_file, everyday_projects)
         elif choice == "4":
+            start_menu()
+        elif choice == "5":
             exit()
         else:
             print("Invalid choice")
