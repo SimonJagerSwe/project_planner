@@ -152,10 +152,6 @@ class EverydayProject(Project):
 
 
 while True:
-    # Main function
-    
-
-
     # Start menu
     def start_menu():
         print("What would you like to do?\n")
@@ -500,7 +496,7 @@ while True:
         else:
             print("Invalid option, type 'Y' for yes or 'N' for no")
             exit()
-            
+
     break
 
 
