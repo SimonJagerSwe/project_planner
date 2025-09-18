@@ -40,6 +40,11 @@ everyday_archive = []
 fa_file = "full_archive.json"
 full_archive = []
 
+# Main function
+def main():
+        initialize_project_lists()
+        print(f"{logo}\n\n\n")
+        start_menu()
 
 # Initialising archives from json-files
 def initialize_project_lists():    
@@ -148,10 +153,7 @@ class EverydayProject(Project):
 
 while True:
     # Main function
-    def main():
-        initialize_project_lists()
-        print(f"{logo}\n\n\n")
-        start_menu()
+    
 
 
     # Start menu
@@ -498,9 +500,11 @@ while True:
         else:
             print("Invalid option, type 'Y' for yes or 'N' for no")
             exit()
+            
+    break
 
 
 
 # Execute main
-    if __name__ == "__main__":
-        main()
+if __name__ == "__main__":
+    main()
