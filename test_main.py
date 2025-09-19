@@ -16,15 +16,17 @@ def test_add_everyday_project(everyday_manager):
 
 def test_view_projects():
     ...
-
-@pytest.fixture
-def prompt():
-    return "y"
 '''
 
 def test_exit(monkeypatch):
+    # Check lowercase y exits program
     monkeypatch.setattr("builtins.input", lambda _: "y")
     with pytest.raises(SystemExit) as input:
         exit()
     assert input.type == SystemExit
-    
+
+    # Check uppercase Y converts to lowercase and exits program
+    monkeypatch.setattr("builtins.input", lambda _: "Y")
+    with pytest.raises(SystemExit) as input:
+        exit()
+    assert input.type == SystemExit
