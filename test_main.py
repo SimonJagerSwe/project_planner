@@ -3,7 +3,7 @@ import mock
 import pytest
 import sys
 
-from .main import add_project_menu, programming_projects, ProgrammingProject, everyday_projects, EverydayProject, Project, exit
+from .main import exit
 
 def test_add_project_menu():
     ...
@@ -19,6 +19,7 @@ def test_add_programming_project():
         "progress" : "99.9%",
         "status" : "Eternal"
     }
+    mock_pl = []
 
 def test_add_everyday_project():
     mock_ep = {
@@ -29,6 +30,7 @@ def test_add_everyday_project():
         "status" : "Eternal"
 
     }
+    mock_el = []
 
 def test_view_projects():
     ...
