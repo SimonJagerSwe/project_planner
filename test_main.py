@@ -1,4 +1,5 @@
 # Imports
+import mock
 import pytest
 import sys
 
@@ -23,4 +24,7 @@ def prompt():
 
 def test_exit(monkeypatch):
     monkeypatch.setattr("builtins.input", lambda _: "y")
-    assert exit() == sys.exit("\nExiting program")
+    with pytest.raises(SystemExit) as input:
+        exit()
+    assert input.type == SystemExit
+    
