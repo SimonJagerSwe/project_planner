@@ -1,5 +1,5 @@
 # PROJECT PLANNER
-#### Video Demo: <video url>
+#### Video Demo: <https://youtu.be/3Bj3TvIhM44>
 #### Description:
 The idea of this project is to create a program that will allow me to track my programming projects over time. It will also allow me to track my everyday projects, as one easily loses track of time while programming! Over time, the user can also create an archive over completed (or cancelled, should that be the case) projects, to look back at what they've done.
 

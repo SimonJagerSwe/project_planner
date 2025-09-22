@@ -120,6 +120,8 @@ class ProgrammingProject(Project):
 
         with open(pp_file, "w") as file:
             json.dump(pp, file)
+        
+        start_menu()
 
 
 # Everyday class, utilizing parameters from parent class
@@ -150,6 +152,8 @@ class EverydayProject(Project):
 
         with open(ep_file, "w") as file:
             json.dump(ep, file)
+
+        start_menu()
 
 
 # Start menu
@@ -250,6 +254,8 @@ def modify_programming_project(pf, pl):
         with open(pp_file, "w") as file:
             json.dump(pl, file)
 
+    start_menu()
+
 
 # Modify everyday project, calling the everyday projects file and list
 def modify_everyday_project(ef, el):
@@ -291,6 +297,8 @@ def modify_everyday_project(ef, el):
     with open(ep_file, "w") as file:
         json.dump(el, file)
 
+    start_menu()
+
 
 # Project archiving
 def archive_project(project_file, project_list, current_file, current_list, full_archive_file, full_archive_list):
@@ -328,6 +336,8 @@ def archive_project(project_file, project_list, current_file, current_list, full
     full_archive_list.append(project_to_archive)
     with open(full_archive_file, "w") as file:
         json.dump(full_archive_list, file)
+
+    start_menu()
 
 
 # View current programming projects
