@@ -5,7 +5,9 @@ The idea of this project is to create a program that will allow me to track my p
 
 This is done by allowing the program to create .json-files for each type of project and project archive (a file for each kind of project and archive has already been created in order to comply with the Harvard CS50P requirements, later versions will not feature this, and instead allow the program to create them ).
 
-Current version: 1.0.0, published 2025-09-22 to https://github.com/SimonJagerSwe/project_planner/
+Current version: 1.0.0
+Published 2025-09-22
+https://github.com/SimonJagerSwe/project_planner/
 
 
 
