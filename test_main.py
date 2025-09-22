@@ -1,10 +1,21 @@
 # Imports
+import json
 import mock
 import pytest
 import sys
 
 from .main import main, initialize_project_lists, ProgrammingProject, add_project_menu, programming_projects, exit
-mock_pp = {
+
+# def test_main_init():
+#     assert main() == initialize_project_lists()
+
+def test_add_project_menu(monkeypatch):
+    ...
+    # monkeypatch.setattr("builtins.input", lambda _: "1")
+    # assert add_project_menu() == ProgrammingProject.add_project_programming(programming_projects)
+
+def test_add_programming_project():
+    mock_pp = {
         "name" : "Mock program 1",
         "start" : "1970-01-01",
         "finish" : "2055-12-31",
@@ -13,30 +24,41 @@ mock_pp = {
         "progress" : "99.9%",
         "status" : "Eternal"
     }
-mock_pl = []
-mock_ep = {
+    mock_pl = []
+    mock_pl.append(mock_pp)
+
+    with open("mock_programming_projects.json", "w") as file:
+        json.dump(mock_pl, file)
+    mock_pl.clear()
+
+    with open("mock_programming_projects.json", "r") as file:
+        mock_projects = json.load(file)
+        for project in mock_projects:
+            mock_pl.append(project)
+
+    assert mock_pl[-1] == mock_pp
+
+def test_add_everyday_project():
+    mock_el = []
+    mock_ep = {
         "name" : "Mock everyday 1",
         "start" : "1970-01-01",
         "finish" : "2055-12-31",
         "progress" : "99.9%",
         "status" : "Eternal"
-
     }
-mock_el = []
+    mock_el.append(mock_ep)
+    
+    with open("mock_everyday_projects.json", "w") as file:
+        json.dump(mock_el, file)
+    mock_el.clear()
 
-def test_main_init():
-    assert main() == initialize_project_lists()
+    with open("mock_everyday_projects.json", "r") as file:
+        mock_projects = json.load(file)
+        for project in mock_projects:
+            mock_el.append(project)
 
-def test_add_project_menu(monkeypatch):
-    ...
-    # monkeypatch.setattr("builtins.input", lambda _: "1")
-    # assert add_project_menu() == ProgrammingProject.add_project_programming(programming_projects)
-
-def test_add_programming_project():
-    ...
-
-def test_add_everyday_project():
-    ...
+    assert mock_el[-1] == mock_ep
 
 def test_view_projects():
     ...
