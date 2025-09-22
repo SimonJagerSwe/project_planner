@@ -6,13 +6,6 @@ import sys
 
 from .main import main, initialize_project_lists, ProgrammingProject, add_project_menu, programming_projects, exit
 
-# def test_main_init():
-#     assert main() == initialize_project_lists()
-
-def test_add_project_menu(monkeypatch):
-    ...
-    # monkeypatch.setattr("builtins.input", lambda _: "1")
-    # assert add_project_menu() == ProgrammingProject.add_project_programming(programming_projects)
 
 def test_add_programming_project():
     mock_pp = {
@@ -60,8 +53,6 @@ def test_add_everyday_project():
 
     assert mock_el[-1] == mock_ep
 
-def test_view_projects():
-    ...
 
 def test_exit_upper(monkeypatch):
     # Check lowercase y exits program
