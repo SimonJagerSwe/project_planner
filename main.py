@@ -42,9 +42,9 @@ full_archive = []
 
 # Main function
 def main():
-        initialize_project_lists()
-        print(f"{logo}\n\n\n")
-        start_menu()
+    initialize_project_lists()
+    print(f"{logo}\n\n\n")
+    start_menu()
 
 
 # Initialising archives from json-files
